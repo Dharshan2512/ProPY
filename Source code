@@ -1,0 +1,522 @@
+#"""""""""""""""""""""""""""""""""""""""""""miniproject"""""""""""""""""""""""""""""""""""'""""""'"""
+from tkinter import *
+root=Tk()
+from PIL import Image, ImageTk
+
+root.title("MINI PROJECT")
+root.geometry("1300x800")
+root.configure(bg="#710193")
+l10 = Label(text="MINI PROJECT", height=2, width=20, relief="solid", fg="yellow", bg="orange", font=("arial", 20, "bold"))
+l10.place(x=480, y=20)
+
+
+#"""""""""""""""""""""""""""""""""""""""""""A.images"""""""""""""""""""""""""""""""""""""""""""""""""""
+#1
+image= Image.open("C:\\Users\\JAYAVARDHAN SWARNA\\OneDrive\\Pictures\\py photos\\ocr.jpeg")
+resize_image = image.resize((250, 250))
+image = ImageTk.PhotoImage(resize_image)
+lab = Label(image=image)
+lab.place(x=20, y=100)
+
+#2
+image1= Image.open("C:\\Users\\JAYAVARDHAN SWARNA\\OneDrive\\Pictures\\py photos\\digiclock.jpg")
+resize_image1 = image1.resize((250, 250))
+image1 = ImageTk.PhotoImage(resize_image1)
+lab = Label(image=image1)
+lab.place(x=310, y=105)
+
+#3
+image2= Image.open("C:\\Users\\JAYAVARDHAN SWARNA\\OneDrive\\Pictures\\py photos\\cal.jpg")
+resize_image2 = image2.resize((250, 250))
+image2 = ImageTk.PhotoImage(resize_image2)
+lab = Label(image=image2)
+lab.place(x=600, y=100)
+
+#4
+image3= Image.open("C:\\Users\\JAYAVARDHAN SWARNA\\OneDrive\\Pictures\\py photos\\face.jpg")
+resize_image3 = image3.resize((250,250))
+image3 = ImageTk.PhotoImage(resize_image3)
+lab = Label(image=image3)
+lab.place(x=890, y=100)
+
+#5
+image4= Image.open("C:\\Users\\JAYAVARDHAN SWARNA\\OneDrive\\Pictures\\py photos\\music.png")
+resize_image4 = image4.resize((250, 250))
+image4 = ImageTk.PhotoImage(resize_image4)
+lab = Label(image=image4)
+lab.place(x=20, y=450)
+
+#6
+image5= Image.open("C:\\Users\\JAYAVARDHAN SWARNA\\OneDrive\\Pictures\\py photos\\tic.jpg")
+resize_image5 = image5.resize((250, 250))
+image5 = ImageTk.PhotoImage(resize_image5)
+lab = Label(image=image5)
+lab.place(x=310, y=450)
+
+#7
+image6= Image.open("C:\\Users\\JAYAVARDHAN SWARNA\\OneDrive\\Pictures\\py photos\\audio.png")
+resize_image6 = image6.resize((250, 250))
+image6 = ImageTk.PhotoImage(resize_image6)
+lab = Label(image=image6)
+lab.place(x=600, y=450)
+#"""""""""""""""""""""""""""""""""""""""""""Z.images""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+#def Exitt():
+#    exit()
+
+
+def imgtotext():
+#""""""""""""""""""""""""""""""""""""""""""""""A.ocr""""""""""""""""""""""""""""""""""""""""""""""""""
+    import pytesseract
+    import PIL.Image
+    import tkinter
+    from tkinter import filedialog
+    
+    window = Tk()
+    window.title("OCR")
+    window.geometry("400x400")
+
+    def opennFile():
+        path = filedialog.askopenfilename()
+        pytesseract.pytesseract.tesseract_cmd = r'D:\Python\python installation 3.7.9\tesseract in jupyter\tesseract.exe'
+        img = PIL.Image.open(path)
+        textt = pytesseract.image_to_string(img)
+        #print(textt)
+        l1 = Label(window, text=textt, width=30).place(x=80, y=100)
+    
+    
+    b1 = Button(window, text="Open", width = 10, fg="orange", bg="yellow", font=("arial", 20, "bold"), command=opennFile)
+    b1.place(x=110, y=10)
+
+    window.mainloop()
+#""""""""""""""""""""""""""""""""""""""""""""""z.ocr""""""""""""""""""""""""""""""""""""""""""""""""""
+def alarmclock():
+#"""""""""""""""""""""""""""""""""""""""""A.alarm clock"""""""""""""""""""""""""""""""""""""""""""""""""
+    from tkinter import Label, Tk 
+    import time
+    app_window = Tk() 
+    app_window.title("Digital Clock") 
+    app_window.geometry("520x150") 
+    app_window.resizable(1,1)
+
+    text_font= ("Boulder", 68, 'bold')
+    background = "#f2e750"
+    foreground= "#363529"
+    border_width = 25
+
+    label = Label(app_window, font=text_font, bg=background, fg=foreground, bd=border_width) 
+    label.grid(row=0, column=1)
+
+    def digital_clock(): 
+        time_live = time.strftime("%H:%M:%S")
+        label.config(text=time_live) 
+        label.after(200, digital_clock)
+
+    digital_clock()
+    app_window.mainloop()
+#""""""""""""""""""""""""""""""""""""""""""""""""z.alarm clock"""""""""""""""""""""""""""""""""""""""""''
+
+
+#"""""""""""""""""""""""""""""""""""""""""""""""A.CALENDAR"""""""""""""""""""""""""""""""""""""""""""""""
+def calender():    
+    #from tkinter import *
+    import calendar
+
+    #function to show calendar of the given year
+    def showCalender():
+        gui = Tk()
+        gui.config(background='grey')
+        gui.title("Calender for the year")
+        gui.geometry("550x600")
+        year = int(year_field.get())
+        gui_content= calendar.calendar(year)
+        calYear = Label(gui, text= gui_content, font= "Consolas 10 bold")
+        calYear.grid(row=5, column=1,padx=20)
+        gui.mainloop()
+    
+    #Driver code
+    if __name__=='__main__':
+        new = Tk()
+        new.config(background='grey')
+        new.title("Calender")
+        new.geometry("250x140")
+        cal = Label(new, text="Calender",bg='grey',font=("times", 28, "bold"))
+        year = Label(new, text="Enter year", bg='dark grey')
+        year_field=Entry(new)
+        button = Button(new, text='Show Calender',
+    fg='Black',bg='Blue',command=showCalender)
+
+        #putting widgets in position
+        cal.grid(row=1, column=1)
+        year.grid(row=2, column=1)
+        year_field.grid(row=3, column=1)
+        button.grid(row=4, column=1)
+        #Exit.grid(row=6, column=1)
+        new.mainloop()
+#""""""""""""""""""""""""""""""""""""""""""""z.CALENDAR""""""""""""""""""""""""""""""""""""""""""""'""'
+
+#""""""""""""""""""""""""""""""""""""""""""""A.Face sketches""""""""""""""""""""""""""""""""""""""""""""""
+def facesketches():
+    import cv2
+    from tkinter import filedialog
+    path = filedialog.askopenfilename()
+    image = cv2.imread(path)
+    cv2.imshow("nani", image)
+    cv2.waitKey(0)
+
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    cv2.imshow("New nani", gray_image)
+    cv2.waitKey(0)
+
+    inverted_image = 255 - gray_image
+    cv2.imshow("Inverted nani", inverted_image)
+    cv2.waitKey()
+
+    blurred = cv2.GaussianBlur(inverted_image, (21, 21), 0)
+    inverted_blurred = 255 - blurred
+    pencil_sketch = cv2.divide(gray_image, inverted_blurred, scale=256.0)
+    cv2.imshow("Sketch nani", pencil_sketch)
+    cv2.waitKey(0)
+
+    cv2.imshow("original image nani", image)
+    cv2.imshow("pencil sketch nani", pencil_sketch)
+    cv2.waitKey(0)
+
+#""""""""""""""""""""""""""""""""""""""""""""Z.Face sketches""""""""""""""""""""""""""""""""""""""""""
+def musicplayer():
+#"""""""""""""""""""""""""""""""""""""""""""""A.music player""""""""""""""""""""""""""""""""""""""""""
+    import pygame
+    import tkinter as tkr
+    from tkinter.filedialog import askdirectory
+    import os
+
+    music_player = tkr.Tk()
+    music_player.title("My Music Player")
+    music_player.geometry("450x350")
+    directory = askdirectory()
+    os.chdir(directory)
+    song_list = os.listdir()
+
+    play_list = tkr.Listbox(music_player, font="Helvetica 12 bold", bg='yellow', selectmode=tkr.SINGLE)
+    for item in song_list:
+        pos = 0
+        play_list.insert(pos, item)
+        pos += 1
+    pygame.init()
+    pygame.mixer.init()
+
+    def play():
+        pygame.mixer.music.load(play_list.get(tkr.ACTIVE))
+        var.set(play_list.get(tkr.ACTIVE))
+        pygame.mixer.music.play()
+    def stop():
+        pygame.mixer.music.stop()
+    def pause():
+        pygame.mixer.music.pause()
+    def unpause():
+        pygame.mixer.music.unpause()
+    Button1 = tkr.Button(music_player, width=5, height=3, font="Helvetica 12 bold", text="PLAY", command=play, bg="blue", fg="white")
+    Button2 = tkr.Button(music_player, width=5, height=3, font="Helvetica 12 bold", text="STOP", command=stop, bg="red", fg="white")
+    Button3 = tkr.Button(music_player, width=5, height=3, font="Helvetica 12 bold", text="PAUSE", command=pause, bg="purple", fg="white")
+    Button4 = tkr.Button(music_player, width=5, height=3, font="Helvetica 12 bold", text="UNPAUSE", command=unpause, bg="orange", fg="white")
+
+    var = tkr.StringVar() 
+    song_title = tkr.Label(music_player, font="Helvetica 12 bold", textvariable=var)
+
+    song_title.pack()
+    Button1.pack(fill="x")
+    Button2.pack(fill="x")
+    Button3.pack(fill="x")
+    Button4.pack(fill="x")
+    play_list.pack(fill="both", expand="yes")
+    music_player.mainloop()
+#"""""""""""""""""""""""""""""""""""""""""""""Z.music player""""""""""""""""""""""""""""""""""""""""""
+#"""""""""""""""""""""""""""""""""""""""""'A.tic tac toe"""""""""""""""""""""""""""""""""""""""""""""""""""
+def tictactoe():
+    #from tkinter import *
+    import tkinter
+    import numpy as np
+
+    size_of_board = 600
+    symbol_size = (size_of_board / 3 - size_of_board / 8) / 2
+    symbol_thickness = 50
+    symbol_X_color = '#EE4035'
+    symbol_O_color = '#0492CF'
+    Green_color = '#7BC043'
+
+
+    class Tic_Tac_Toe():
+        # ------------------------------------------------------------------
+        # Initialization Functions:
+        # ------------------------------------------------------------------
+        def __init__(self):
+            self.window = Tk()
+            self.window.title('Tic-Tac-Toe')
+            self.canvas = Canvas(self.window, width=size_of_board, height=size_of_board)
+            self.canvas.pack()
+            # Input from user in form of clicks
+            self.window.bind('<Button-1>', self.click)
+
+            self.initialize_board()
+            self.player_X_turns = True
+            self.board_status = np.zeros(shape=(3, 3))
+
+            self.player_X_starts = True
+            self.reset_board = False
+            self.gameover = False
+            self.tie = False
+            self.X_wins = False
+            self.O_wins = False
+
+            self.X_score = 0
+            self.O_score = 0
+            self.tie_score = 0
+
+        def mainloop(self):
+            self.window.mainloop()
+
+        def initialize_board(self):
+            for i in range(2):
+                self.canvas.create_line((i + 1) * size_of_board / 3, 0, (i + 1) * size_of_board / 3, size_of_board)
+
+            for i in range(2):
+                self.canvas.create_line(0, (i + 1) * size_of_board / 3, size_of_board, (i + 1) * size_of_board / 3)
+
+        def play_again(self):
+            self.initialize_board()
+            self.player_X_starts = not self.player_X_starts
+            self.player_X_turns = self.player_X_starts
+            self.board_status = np.zeros(shape=(3, 3))
+
+        # ------------------------------------------------------------------
+        # Drawing Functions:
+        # The modules required to draw required game based object on canvas
+        # ------------------------------------------------------------------
+
+        def draw_O(self, logical_position):
+            logical_position = np.array(logical_position)
+            # logical_position = grid value on the board
+            # grid_position = actual pixel values of the center of the grid
+            grid_position = self.convert_logical_to_grid_position(logical_position)
+            self.canvas.create_oval(grid_position[0] - symbol_size, grid_position[1] - symbol_size,
+                                grid_position[0] + symbol_size, grid_position[1] + symbol_size, width=symbol_thickness,
+                                outline=symbol_O_color)
+
+        def draw_X(self, logical_position):
+            grid_position = self.convert_logical_to_grid_position(logical_position)
+            self.canvas.create_line(grid_position[0] - symbol_size, grid_position[1] - symbol_size,
+                                grid_position[0] + symbol_size, grid_position[1] + symbol_size, width=symbol_thickness,
+                                fill=symbol_X_color)
+            self.canvas.create_line(grid_position[0] - symbol_size, grid_position[1] + symbol_size,
+                                grid_position[0] + symbol_size, grid_position[1] - symbol_size, width=symbol_thickness,
+                                fill=symbol_X_color)
+
+        def display_gameover(self):
+
+            if self.X_wins:
+                self.X_score += 1
+                text = 'Winner: Player 1 (X)'
+                color = symbol_X_color
+            elif self.O_wins:
+                self.O_score += 1
+                text = 'Winner: Player 2 (O)'
+                color = symbol_O_color
+            else:
+                self.tie_score += 1
+                text = 'Its a tie'
+                color = 'gray'
+
+            self.canvas.delete("all")
+            self.canvas.create_text(size_of_board / 2, size_of_board / 3, font="cmr 60 bold", fill=color, text=text)
+
+            score_text = 'Scores \n'
+            self.canvas.create_text(size_of_board / 2, 5 * size_of_board / 8, font="cmr 40 bold", fill=Green_color,
+                                text=score_text)
+
+            score_text = 'Player 1 (X) : ' + str(self.X_score) + '\n'
+            score_text += 'Player 2 (O): ' + str(self.O_score) + '\n'
+            score_text += 'Tie                    : ' + str(self.tie_score)
+            self.canvas.create_text(size_of_board / 2, 3 * size_of_board / 4, font="cmr 30 bold", fill=Green_color,
+                                text=score_text)
+            self.reset_board = True
+
+            score_text = 'Click to play again \n'
+            self.canvas.create_text(size_of_board / 2, 15 * size_of_board / 16, font="cmr 20 bold", fill="gray",
+                                text=score_text)
+
+        # ------------------------------------------------------------------
+        # Logical Functions:
+        # The modules required to carry out game logic
+        # ------------------------------------------------------------------
+
+        def convert_logical_to_grid_position(self, logical_position):
+            logical_position = np.array(logical_position, dtype=int)
+            return (size_of_board / 3) * logical_position + size_of_board / 6
+
+        def convert_grid_to_logical_position(self, grid_position):
+            grid_position = np.array(grid_position)
+            return np.array(grid_position // (size_of_board / 3), dtype=int)
+
+        def is_grid_occupied(self, logical_position):
+            if self.board_status[logical_position[0]][logical_position[1]] == 0:
+                return False
+            else:
+                return True
+
+        def is_winner(self, player):
+
+            player = -1 if player == 'X' else 1
+
+            # Three in a row
+            for i in range(3):
+                if self.board_status[i][0] == self.board_status[i][1] == self.board_status[i][2] == player:
+                    return True
+                if self.board_status[0][i] == self.board_status[1][i] == self.board_status[2][i] == player:
+                    return True
+
+            # Diagonals
+            if self.board_status[0][0] == self.board_status[1][1] == self.board_status[2][2] == player:
+                return True
+
+            if self.board_status[0][2] == self.board_status[1][1] == self.board_status[2][0] == player:
+                return True
+
+            return False
+
+        def is_tie(self):
+
+            r, c = np.where(self.board_status == 0)
+            tie = False
+            if len(r) == 0:
+                tie = True
+
+            return tie
+
+        def is_gameover(self):
+            # Either someone wins or all grid occupied
+            self.X_wins = self.is_winner('X')
+            if not self.X_wins:
+                self.O_wins = self.is_winner('O')
+
+            if not self.O_wins:
+                self.tie = self.is_tie()
+
+            gameover = self.X_wins or self.O_wins or self.tie
+
+            if self.X_wins:
+                print('X wins')
+            if self.O_wins:
+                print('O wins')
+            if self.tie:
+                print('Its a tie')
+
+            return gameover
+
+
+
+
+
+        def click(self, event):
+            grid_position = [event.x, event.y]
+            logical_position = self.convert_grid_to_logical_position(grid_position)
+
+            if not self.reset_board:
+                if self.player_X_turns:
+                    if not self.is_grid_occupied(logical_position):
+                        self.draw_X(logical_position)
+                        self.board_status[logical_position[0]][logical_position[1]] = -1
+                        self.player_X_turns = not self.player_X_turns
+                else:
+                    if not self.is_grid_occupied(logical_position):
+                        self.draw_O(logical_position)
+                        self.board_status[logical_position[0]][logical_position[1]] = 1
+                        self.player_X_turns = not self.player_X_turns
+
+                # Check if game is concluded
+                if self.is_gameover():
+                    self.display_gameover()
+                    # print('Done')
+            else:  # Play Again
+                self.canvas.delete("all")
+                self.play_again()
+                self.reset_board = False
+
+
+    game_instance = Tic_Tac_Toe()
+    game_instance.mainloop()
+#"""""""""""""""""""""""""""""""""""""""""'Z.tic tac toe"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+#""""""""""""""""""""""""""""""""""""""A.text to audiobook""""""""""""""""""""""""""""""""""""''''''''''''""'
+
+def audiobook():
+    
+    import PyPDF2
+    from tkinter import filedialog
+    import tkinter
+
+    noon = Tk()
+    noon.geometry("400x400")
+    noon.title("AudioBook")
+    #open('D:\\Babby\\CNotesForProfessionals.pdf', 'rb')
+
+    def opener():
+        pdfReader = PyPDF2.PdfFileReader(filedialog.askopenfilename())
+        import pyttsx3
+        speaker = pyttsx3.init()
+        for page_num in range(pdfReader.numPages):
+            text =  pdfReader.getPage(page_num).extractText()
+            speaker.say(text)
+            speaker.runAndWait()
+        speaker.stop("stop")
+        engine.save_to_file(text, 'audio.mp3')
+        engine.runAndWait()
+
+    
+    #def player():
+    
+
+    #def pauser():
+    
+
+    #def canceller():
+    
+    
+    
+    b1=Button(noon, width = 15, text="Open", fg="orange", bg="yellow", font=("arial", 20, "bold"), command=opener)
+    b1.place(x=10,y=10)
+    #b2=Button(nani, width = 15, text="play", fg="orange", bg="yellow", font=("arial", 20, "bold"), command=opener)
+    #b2.place(x=10,y=50)
+    #b3=Button(nani, width = 15, text="pause", fg="orange", bg="yellow", font=("arial", 20, "bold"), command=pauser)
+    #b3.place(x=10,y=100)
+    #b3=Button(nani, width = 15, text="Cancel", fg="orange", bg="yellow", font=("arial", 20, "bold"), command=opener)
+    #b3.place(x=10,y=150)
+
+    noon.mainloop()
+#""""""""""""""""""""""""""""""""""""""Z.text to audiobook""""""""""""""""""""""""""""""""""""''''''''''''""'
+
+
+#b0=Button(root, text="Exit", height=5, width = 5, fg="yellow", bg="orange", font=("arial", 20, "bold"), command=Exitt)
+#b0.place(x=10,y=5)
+b1=Button(root, text="OCR", height=1, width = 15, fg="yellow", bg="orange", font=("arial", 20, "bold"), command=imgtotext)
+b1.place(x=15,y=370)
+b2=Button(root, width = 15, text="DigiClock", fg="yellow", bg="orange", font=("arial", 20, "bold"), command=alarmclock)
+b2.place(x=310,y=370)
+b3=Button(root, width = 15, text="Calendar", fg="yellow", bg="orange", font=("arial", 20, "bold"), command=calender)
+b3.place(x=600,y=370)
+b4=Button(root, width = 15, text="FaceSketch", fg="yellow", bg="orange", font=("arial", 20, "bold"), command=facesketches)
+b4.place(x=890,y=370)
+b5=Button(root, width = 15, text="MusicPlayer", fg="yellow", bg="orange", font=("arial", 20, "bold"), command=musicplayer)
+b5.place(x=20,y=720)
+b6=Button(root, width = 15, text="TicTacToeGame", fg="yellow", bg="orange", font=("arial", 20, "bold"), command=tictactoe)
+b6.place(x=310,y=720)
+b7=Button(root, width = 15, text="AudioBook", fg="yellow", bg="orange", font=("arial", 20, "bold"), command=audiobook)
+b7.place(x=600,y=720)
+
+
+
+
+
+
+root.mainloop()
